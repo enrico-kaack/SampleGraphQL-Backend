@@ -1,6 +1,6 @@
 type Query {
     info: String!
-    feed(filter: String, skip: Int, first: Int): [Link!]!
+    feed(filter: String, skip: Int, first: Int): Feed!
 }
 
 type Mutation {
@@ -39,4 +39,9 @@ type User {
   name: String!
   email: String!
   links: [Link!]!
+}
+
+type Feed {
+  links: [Link!]!
+  count: Int!
 }

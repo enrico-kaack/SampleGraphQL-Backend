@@ -1,4 +1,4 @@
-function feed(root, args, context, info){
+async function feed(root, args, context, info){
     const where = args.filter ? {
         OR: [
             { description_contains: args.filter},
@@ -6,11 +6,17 @@ function feed(root, args, context, info){
         ]
     } : {}
 
-    return context.prisma.links( {
+    const links =  context.prisma.links( {
         where,
         skip: args.skip,
         first: args.first
     })
+    const count = await context.prisma.linksConnection({where}).aggregate().count()
+
+    return {
+        links, 
+        count
+    }
 }
 
 module.exports = {
