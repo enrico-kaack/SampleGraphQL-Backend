@@ -1,0 +1,10 @@
+#endpoint: ''
+endpoint: http://localhost:4466
+
+#data model file
+datamodel: datamodel.prisma
+
+generate: 
+  - generator: javascript-client
+    output: ../src/generated/prisma-client
+
